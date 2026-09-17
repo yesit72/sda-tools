@@ -11,6 +11,11 @@ const BGS = [
 
 export default function CollageMaker() {
   const [imgs, setImgs] = useState([]);
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState(() => {
+    const d = new Date();
+    return `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()} (${'일월화수목금토'[d.getDay()]})`;
+  });
   const [bg, setBg] = useState('#E9EDF3');
   const [fit, setFit] = useState('cover');
   const [logo, setLogo] = useState(null);
@@ -25,11 +30,11 @@ export default function CollageMaker() {
     const res = [];
     for (let i = 0; i < imgs.length; i += 4) {
       const c = document.createElement('canvas');
-      drawCollage(c, imgs.slice(i, i + 4), { bg, fit, logo });
+      drawCollage(c, imgs.slice(i, i + 4), { bg, fit, logo, title, date });
       res.push(c.toDataURL('image/jpeg', 0.92));
     }
     setOuts(res);
-  }, [imgs, bg, fit, logo]);
+  }, [imgs, bg, fit, logo, title, date]);
 
   const take = (files) => {
     const list = [...files].filter(f => f.type.startsWith('image/'));
@@ -74,6 +79,14 @@ export default function CollageMaker() {
         </p>
 
         <div className="field" style={{ marginTop: 16 }}>
+          <label>제목 (한 줄)</label>
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="함께한 사람들" />
+        </div>
+        <div className="field">
+          <label>날짜</label>
+          <input value={date} onChange={e => setDate(e.target.value)} />
+        </div>
+        <div className="field">
           <label>배경</label>
           <div className="row">
             {BGS.map(b => (
