@@ -12,8 +12,8 @@ export default function Page() {
       </div>
       <NewsletterMaker />
       <p className="note">
-        <b>규칙</b><br />
-        제목 26~30pt, 정보줄 15pt, 본문 16~17pt, 글자는 Noto Sans KR입니다. 본문에 이모지는 넣지 않습니다.
+        <b>알아 두기</b><br />
+        글이 길면 글자가 자동으로 작아지고, 한 장을 넘으면 알려 드립니다. 쓰던 글은 이 기기에 자동으로 임시 저장되지만 사진은 저장되지 않습니다.
       </p>
     </main>
   );

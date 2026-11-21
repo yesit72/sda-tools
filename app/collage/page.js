@@ -13,7 +13,7 @@ export default function Page() {
       <CollageMaker />
       <p className="note">
         <b>저장하는 법</b><br />
-        저장 버튼을 누르거나, 폰에서는 그림을 길게 눌러 저장하면 됩니다. 갤러리가 안 뜨면 크롬이나 삼성 인터넷에서 열어 주세요.
+        휴대폰에서는 &lsquo;카카오톡 등으로 공유&rsquo;를 누르면 바로 카카오톡을 고를 수 있습니다. 저장이 안 되면 그림을 길게 눌러 저장하세요.
       </p>
     </main>
   );
