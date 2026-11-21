@@ -57,12 +57,12 @@ figcaption{margin-top:8px;font-size:12.5px;color:var(--faint);display:flex;justi
 
 /* 미리보기 위에서 바로 고치기 */
 .stage{position:relative;margin-top:0}
-.stage canvas{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}
+.stage canvas{width:100%;height:auto;display:block;border-radius:10px;outline:1px solid var(--line);outline-offset:-1px}
 .hit{position:absolute;padding:0;border:1.5px dashed #8d94a3;border-radius:6px;background:transparent;cursor:text}
 .hit:hover,.hit:focus-visible{background:rgba(30,42,68,.07);border-color:var(--ink);outline:none}
-.inline-edit{position:absolute;margin:0;padding:5px 6px;box-sizing:border-box;border:2px solid var(--ink);border-radius:6px;
-  background:#fff;color:var(--ink);font-family:"Noto Sans KR",sans-serif;resize:none;overflow:auto;z-index:2}
-.inline-edit:focus{outline:none}
+.inline-edit{position:absolute;margin:0;padding:0;border:0;border-radius:0;box-sizing:border-box;background:#fff;color:var(--ink);
+  font-family:"Noto Sans KR",sans-serif;letter-spacing:0;resize:none;overflow:hidden;z-index:2;
+  white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;text-align:left;font-kerning:normal}
 
 /* 콜라주: 칸 누르기, 자르기 창 */
 .crop-hit{display:flex;align-items:flex-end;justify-content:center;cursor:pointer;border-radius:8px}

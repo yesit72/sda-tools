@@ -57,7 +57,7 @@ export default function NewsletterMaker() {
     dateOn,
     edit,
     items: order.map(k => ({ key: k, kind: ITEMS[k].kind, label: ITEMS[k].label, value: form[k].trim() })),
-    body: form.body.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean),
+    body: form.body,
     photos,
   });
 
@@ -190,7 +190,7 @@ export default function NewsletterMaker() {
           ))}
           {AddChips()}
           <div className="field">
-            <label>본문 (빈 줄로 문단을 나눕니다)</label>
+            <label>본문 (엔터로 줄을 나누고, 빈 줄은 한 줄을 띄웁니다)</label>
             <textarea value={form.body} onChange={set('body')} placeholder={'회원 여러분 안녕하세요.\n\n오늘 함께한 탐방은…'} />
           </div>
           <div className="field">
@@ -229,7 +229,7 @@ export default function NewsletterMaker() {
             {AddChips()}
           </div>
           <p className="hint">
-            점선으로 표시된 곳을 누르면 그 자리에서 바로 고칠 수 있습니다. 본문은 빈 줄로 문단을 나눕니다.
+            점선으로 표시된 곳을 누르면 그 자리에서 바로 고칠 수 있습니다. 본문은 엔터로 줄을 나누고, 빈 줄은 한 줄을 띄웁니다.
             글자 크기는 길이에 맞춰 자동으로 조절됩니다.
           </p>
         </div>
@@ -268,13 +268,12 @@ export default function NewsletterMaker() {
             inputMode={ed.key === 'date' ? 'numeric' : undefined}
             aria-label={LABEL[ed.key]}
             style={{
-              left: ed.x * scale - 6, top: ed.y * scale - 5,
-              width: ed.w * scale + 12,
-              minHeight: Math.max(ed.h * scale + 10, 30),
-              height: ed.single ? undefined : ed.h * scale + 10,
-              fontSize: `max(16px, ${ed.fs * scale}px)`,
-              lineHeight: ed.lh,
-              fontWeight: ed.bold ? 700 : 400,
+              left: ed.x * scale, top: ed.y * scale,
+              width: ed.w, height: ed.h,
+              transform: `scale(${scale})`, transformOrigin: '0 0',
+              fontSize: ed.fs, lineHeight: ed.lh, fontWeight: ed.bold ? 700 : 400,
+              outline: `${2 / scale}px solid #1e2a44`, outlineOffset: `${5 / scale}px`,
+              boxShadow: `0 0 0 ${5 / scale}px #fff`,
             }}
           />
         )}
