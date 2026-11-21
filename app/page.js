@@ -11,11 +11,11 @@ export default function Home() {
       <div className="cards">
         <Link className="card" href="/newsletter">
           <h2>소식지 만들기</h2>
-          <p>3종 포맷에 글을 넣어 한 장으로. PNG와 PPTX로 받습니다.</p>
+          <p>3종 포맷에 글을 넣고, 미리보기에서 바로 고친 뒤 PNG로 저장합니다.</p>
         </Link>
         <Link className="card" href="/collage">
           <h2>사진 콜라주</h2>
-          <p>사진을 고르면 네 장씩 묶어 콜라주를 만듭니다.</p>
+          <p>사진 최대 4장을 콜라주로 묶고, 사진별로 남길 부분을 골라 완성합니다.</p>
         </Link>
       </div>
       <p className="note">
