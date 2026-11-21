@@ -176,6 +176,15 @@ export default function CollageMaker() {
     }, 'image/jpeg', 0.92);
   };
 
+  // 사진 순서 바꾸기 (자르기 값은 사진을 따라갑니다)
+  const moveImg = (i, d) => {
+    const j = i + d;
+    if (j < 0 || j >= imgs.length) return;
+    const swap = (arr) => { const n = [...arr]; [n[i], n[j]] = [n[j], n[i]]; return n; };
+    setImgs(swap);
+    setCrops(prev => { const n = Array.from({ length: imgs.length }, (_, k) => prev[k]); return swap(n); });
+  };
+
   const applyCrop = (c) => {
     setCrops(prev => { const n = [...prev]; n[cropIdx] = c; return n; });
     setCropIdx(null);
@@ -220,6 +229,24 @@ export default function CollageMaker() {
                   onClick={() => setBg(b.v)}>{b.label}</button>
               ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {imgs.length > 1 && editing && (
+        <div className="panel">
+          <label className="lbl">사진 순서 (◀ ▶ 로 옮깁니다)</label>
+          <div className="thumbs">
+            {imgs.map((im, i) => (
+              <div className="thumb" key={im.src + i}>
+                <img src={im.src} alt={`${i + 1}번 사진`} />
+                <span className="no">{i + 1}</span>
+                <span className="ctl">
+                  <button type="button" className="mini" disabled={i === 0} onClick={() => moveImg(i, -1)} aria-label={`${i + 1}번 사진 앞으로`}>◀</button>
+                  <button type="button" className="mini" disabled={i === imgs.length - 1} onClick={() => moveImg(i, 1)} aria-label={`${i + 1}번 사진 뒤로`}>▶</button>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       )}
